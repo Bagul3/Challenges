@@ -15,9 +15,9 @@ def prompt(msg, expect=str, exit='exit'):
 
         msg:        message to prompt user
         expect:     type to expect                          
-        exit:       input that would cause program exit;    default: 'exit'
+        exit:       input that would cause program exit
 
-    Prompts user for input until input of desired type or exits.
+    Prompts user for input until it is convertible to the expected type
     Returns value converted to the `expect` type on success, else prompts again.
     """
     uinput = raw_input(msg)
