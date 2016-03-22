@@ -1,0 +1,6 @@
+Homepage -> Basket Catalog ContactUs DailyDeals
+Basket -> Checkout ContactUs Homepage
+Catalog -> DailyDeals Homepage
+ContactUs -> Homepage CustomerServiceSite
+AffiliateSite -> Homepage Catalog
+AffiliateSite2 -> Homepage Catalog CompetitorHomepage
