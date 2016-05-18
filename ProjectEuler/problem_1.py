@@ -10,14 +10,24 @@ CORRECT_SOLUTIONS = {
         'actual':   { 'inpits'; (5, 3, 1000),   'answer': 233168 },
 }
 
+def format_inputs(values):
+    """Formats inputs for solution functions. Reurns dict of kwargs."""
+    kwargs = {
+        'factors':      values[:1],
+        'upper_limit':  values[2]
+    }
+    return kwargs
+    
+
 # Date 2016-04-18
-def solution_1(upper_limit, factors*):
+def solution_1(upper_limit, factors):
     """Find the sum of all the multiples of 3 or 5 below 1000."""
     multiples = set()
     for i in factors:
         for j in range(1, ((1000 - 1) // i) + 1):
             multiples.add(i * j)
-    print(sum(multiples))
+    answer = sum(multiples)
+    return answer
 
 # Date 2016-04-18
 def solution2():
@@ -26,10 +36,10 @@ def solution2():
         last_term   = first_term * n
         return n // 2 * (first_term + last_term)
     max_value       = (1000 - 1)
-    print(  arithmetic_sum(3,   max_value=max_value)
-    +       arithmetic_sum(5,   max_value=max_value)
-    -       arithmetic_sum(15,  max_value=max_value)
-    )
+    answer =    arithmetic_sum(3,   max_value=max_value)
+    +           arithmetic_sum(5,   max_value=max_value)
+    -           arithmetic_sum(15,  max_value=max_value)
+    return answer
 
 SOLUTIONS = (
     solution_1,
