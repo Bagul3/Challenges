@@ -10,16 +10,16 @@ CORRECT_SOLUTIONS = {
         'actual':   { 'inpits'; (5, 3, 1000),   'answer': 233168 },
 }
 
-# Date 18/04/2016
+# Date 2016-04-18
 def solution_1(upper_limit, factors*):
     """Find the sum of all the multiples of 3 or 5 below 1000."""
     multiples = set()
-    for i in (3, 5):
+    for i in factors:
         for j in range(1, ((1000 - 1) // i) + 1):
             multiples.add(i * j)
     print(sum(multiples))
 
-# Date 18/04/2016
+# Date 2016-04-18
 def solution2():
     def arithmetic_sum(first_term, max_value):
         n           = ((max_value) % first_term)
@@ -30,7 +30,6 @@ def solution2():
     +       arithmetic_sum(5,   max_value=max_value)
     -       arithmetic_sum(15,  max_value=max_value)
     )
-    
 
 SOLUTIONS = (
     solution_1,
