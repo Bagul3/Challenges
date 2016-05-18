@@ -36,9 +36,9 @@ def solution2():
         last_term   = first_term * n
         return n // 2 * (first_term + last_term)
     max_value       = (1000 - 1)
-    answer =    arithmetic_sum(3,   max_value=max_value)
+    answer =   (arithmetic_sum(3,   max_value=max_value)
     +           arithmetic_sum(5,   max_value=max_value)
-    -           arithmetic_sum(15,  max_value=max_value)
+    -           arithmetic_sum(15,  max_value=max_value))
     return answer
 
 SOLUTIONS = (
