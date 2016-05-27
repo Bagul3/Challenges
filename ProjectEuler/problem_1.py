@@ -6,12 +6,12 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 '''
 
 TEST_CASES = {
-    'control': { 
-        'kwargs': { 'factors': (5, 3), 'upper_boundary': 10 },
-        'answer': 23 
+    'control': {
+        'kwargs': { 'factors': (3, 5), 'upper_boundary': 10 },
+        'answer':23
     },
     'actual': { 
-        'kwargs': { 'factors': (5, 3), 'upper_boundary': 1000 },
+        'kwargs': {'factors': (3, 5), 'upper_boundary': 1000 },
         'answer': 233168
     }
 }
@@ -23,14 +23,16 @@ class Solution1(object):
     """Find the the sum of all values that are multiples of the two factors below 
     an upper limit for natural numbers."""
 
-
     def __init__(self, factors, upper_boundary):
         self.factors        = factors
         self.upper_limit    = upper_boundary - 1
+        self.date           = '2016-05-27'              # NOTE: date of completion
     
     def __arithmetic_sum(self, first_term, no_of_terms):
         """Calculate and return sum or arithmetic sequence."""
-        # answer should be integer! how to track?
+        # TODO: assert that natural numbers are supplied
+        # TODO: assert that upper boundary is greater than each factor
+        # TODO: answer should be integer! how to track?
         summation = no_of_terms * first_term * (1 + no_of_terms) // 2    
         return summation
 
@@ -50,6 +52,5 @@ class Solution1(object):
         # TODO: answers is always >= 0, test
         return answer
 
-        
 
 SOLUTIONS = [Solution1]
