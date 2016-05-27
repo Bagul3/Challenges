@@ -5,43 +5,48 @@ we get 3, 5, 6 and 9. The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below 1000.
 '''
 
-CORRECT_SOLUTIONS = {
-        'control':  { 'inputs': (5, 3, 10),     'answer': 23 },
-        'actual':   { 'inpits'; (5, 3, 1000),   'answer': 233168 },
+TEST_CASES = {
+    'control': {
+        'kwargs': { 'factors': (3, 5), 'upper_boundary': 10 },
+        'answer':23
+    },
+    'actual': { 
+        'kwargs': {'factors': (3, 5), 'upper_boundary': 1000 },
+        'answer': 233168
+    }
 }
 
-def format_inputs(values):
-    """Formats inputs for solution functions. Reurns dict of kwargs."""
-    kwargs = {
-        'factors':      values[:1],
-        'upper_limit':  values[2]
-    }
-    return kwargs
-    
 
-# Date 2016-04-18
-def solution_1(upper_limit, factors):
-    """Find the sum of all the multiples of 3 or 5 below 1000."""
-    multiples = set()
-    for i in factors:
-        for j in range(1, ((1000 - 1) // i) + 1):
-            multiples.add(i * j)
-    answer = sum(multiples)
-    return answer
+class Solution1(object):
 
-# Date 2016-04-18
-def solution2():
-    def arithmetic_sum(first_term, max_value):
-        n           = ((max_value) % first_term)
-        last_term   = first_term * n
-        return n // 2 * (first_term + last_term)
-    max_value       = (1000 - 1)
-    answer =   (arithmetic_sum(3,   max_value=max_value)
-    +           arithmetic_sum(5,   max_value=max_value)
-    -           arithmetic_sum(15,  max_value=max_value))
-    return answer
+    def __init__(self, factors, upper_boundary):
+        self.factors        = factors
+        self.upper_limit    = upper_boundary - 1
+        self.date           = '2016-05-27'              # NOTE: date of completion
 
-SOLUTIONS = (
-    solution_1,
-    solution_2
-)
+    def __arithmetic_sum(self, first_term, no_of_terms):
+        """Calculate and return sum or arithmetic sequence."""
+        # TODO: assert that natural numbers are supplied
+        # TODO: assert that upper boundary is greater than each factor
+        # TODO: answer should be integer! how to track?
+        summation = no_of_terms * first_term * (1 + no_of_terms) // 2    
+        return summation
+
+    def answer(self):
+        """Return the answer."""         
+        # NOTE; unsure how to doc string this; it makes sense in context
+        # TODO: refactor to generalise for more than 2 factors
+
+        # combine arithmetics sums of factors
+        factor_summations   = sum(self.__arithmetic_sum(f, self.upper_limit // f)
+                for f in self.factors)
+        # compensate for repeated values
+        union               = self.factors[0] * self.factors[1]
+        union_summations    = self.__arithmetic_sum(union, self.upper_limit // union)
+        answer              = factor_summations - union_summations
+
+        # TODO: answers is always >= 0, test
+        return answer
+
+
+SOLUTIONS = [Solution1]
