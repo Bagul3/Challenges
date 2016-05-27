@@ -21,11 +21,13 @@ def parse(path):
     # TODO: assert words[1] == '->' for each line in lines!
     return {words[0]: words[2:] for words in lines}
 
+# NOTE: can be generalized as querying a graph given starting nodes, 
+#       returning list of all other connected nodes
 def query(d, pages):
     """query(dict, list) -> list
 
     Queries known sitemap with list of page names. 
-    Returns list of strings of all links reachabe from given starting pages.
+    Returns list of strings of all links reachable from given starting pages.
     """
     out     =   []
     que     =   collections.deque(pages)
@@ -46,4 +48,4 @@ if __name__ == '__main__':
     if len(dependencies) == 0:  print 'unknown'
     else:                       print pages
 
-# NOTE: Alternatively, use `networkx`
+# NOTE: Alternatively, use `networkx` module
